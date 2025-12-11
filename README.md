@@ -1,83 +1,72 @@
 # SpriteCleaner - Background Removal Tool
 
-Professional Python script to remove backgrounds from PNG images, making them transparent while preserving the original subject perfectly.
+Python script that removes backgrounds from PNG images using AI (rembg library), making them transparent.
 
 ![Before & After Comparison](comparison/comparison_grid.png)
 
-## Quick Start
+## Installation
 
 ```bash
-# Install dependencies (one time)
 pip install -r requirements.txt
-
-# Process images
-python remove_background.py -i input_folder -o output
-
-# Process single file
-python remove_background.py -i image.png -o output.png
-
-# Generate before/after comparison
-python compare_images.py
 ```
 
-## Features
+**Dependencies:**
+- `rembg[cpu]>=2.0.69` - AI background removal library
+- `Pillow>=10.0.0` - Image processing
 
-- 🎯 High accuracy AI-powered background removal
-- 🖼️ Preserves original subject without cutting or cropping
-- 🔄 Process single files or entire folders
-- 🎨 Multiple AI models available
-- ⚡ Optimized batch processing
-- 📊 Before/After comparison tool with interactive HTML viewer
+## Usage
 
-## Usage Examples
-
+### Process a Single File
 ```bash
-# Basic batch processing
-python remove_background.py -i ../assets/dogs -o ./output
+python remove_background.py -i input.png -o output.png
+```
 
-# Use faster model
+### Process All PNGs in a Folder
+```bash
+python remove_background.py -i ./input -o ./output
+```
+Output files are saved with `_no_bg` suffix (e.g., `dog_no_bg.png`)
+
+### Use Different AI Models
+```bash
 python remove_background.py -i input.png -o output.png -m u2netp
-
-# Use highest quality model
-python remove_background.py -i input.png -o output.png -m birefnet-general
 ```
 
 ## Available Models
 
-- `u2net` (default) - General purpose, high quality
+- `u2net` (default) - General use, high quality
 - `u2netp` - Lightweight, faster processing
-- `birefnet-general` - Highest quality
+- `u2net_human_seg` - Optimized for humans
 - `isnet-general-use` - High quality alternative
+- `birefnet-general` - Very high quality
+- `birefnet-general-lite` - Lighter version of birefnet
+- `silueta` - Additional option
 
-## Options
+**Note:** First run downloads the selected model (~176MB for u2net) and caches it locally.
+
+## Command Options
 
 ```
--i, --input    Input file or folder path (required)
--o, --output   Output file or folder path (required)
--m, --model    Model to use (default: u2net)
--h, --help     Show help
+-i, --input     Input PNG file or folder path (required)
+-o, --output    Output file or folder path (required)
+-m, --model     AI model to use (default: u2net)
+-h, --help      Show help and examples
 ```
-
-## Output
-
-- Creates new PNG files with transparent backgrounds
-- Folder processing adds `_no_bg` suffix
-- Original images are never modified
-- First run downloads model (~176MB, cached)
 
 ## Comparison Tool
 
-The project includes a comparison tool that generates before/after visualizations:
+Generate visual comparisons of the 5 included template images:
 
 ```bash
+cd comparison
 python compare_images.py
 ```
 
-This generates:
-- `comparison_grid.png` - A visual grid comparing all 5 template images
-- `comparison.html` - An interactive HTML viewer with side-by-side comparisons
+**Generates:**
+- `comparison_grid.png` - Visual grid showing before/after for all 5 images
+- `comparison.html` - Interactive HTML viewer with side-by-side comparisons
 
-The tool uses the 5 template images from the `/input` directory:
+**Template images included:**
 - Black Cocker Spaniel
 - Border Collie
 - German Shepherd
@@ -86,5 +75,5 @@ The tool uses the 5 template images from the `/input` directory:
 
 ## Requirements
 
-- Python 3.10+
-- Dependencies in requirements.txt
+- Python 3.7+
+- Windows/Linux/Mac
