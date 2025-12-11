@@ -1,0 +1,3 @@
+# Background Removal Script Dependencies
+rembg[cpu]>=2.0.69
+Pillow>=10.0.0
