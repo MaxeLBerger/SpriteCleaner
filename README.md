@@ -2,6 +2,8 @@
 
 Professional Python script to remove backgrounds from PNG images, making them transparent while preserving the original subject perfectly.
 
+![Before & After Comparison](comparison/comparison_grid.png)
+
 ## Quick Start
 
 ```bash

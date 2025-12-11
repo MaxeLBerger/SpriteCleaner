@@ -43,7 +43,6 @@ output/
 
 # Generated comparison files
 comparison/comparison.html
-comparison/comparison_grid.png
 
 # Model cache (rembg downloads models here)
 .u2net/
